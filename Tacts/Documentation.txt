@@ -1,0 +1,37 @@
+DifferentTacts is the ultimate contacts app. You can not only store all your contacts in it, but the app helps you remember who these people are.
+
+The app has 3 tabs.
+
+i. Names: View all your contacts by names.
+This class is a CDTVC implementation. There is an add button that lets the user Add a contact. Explained below.
+
+ii. Recents: View all your contacts by recently saved.
+This class is also a CDTVC implementation, with a different sort this time.
+
+iii. Locations: View all your contacts by where you saved them.
+This class is a MapView with MKAnnotations for each contact.
+
+The app also has the following screens.
+
+a. Add Contact
+When you add someone as a contact, you can input all their information. In the background, the app will fetch your location to save as the place where you met the contact. It will also save the date and time you met the contact. If you click the big camera button, you can take and edit a picture of the contact and it will save in the database. When you add someone as a contact, the app also allows you to send them a quick note as explained in the next point.
+
+b. Socialize
+When the user saves the contact, they are presented with an action sheet which allows them to select the Tweet option. If they do this, the app automatically composes a new Tweet for the user with their contact's Twitter handle and Name. This uses the Social.framework. Other social features were also implemented, like Mail and SMS, but MessageUI.framework was giving Linker Errors on Xcode so I removed them.
+
+c. View Contact
+If you click on a contact in the table or map view, you can see the contact details. When you are viewing the contact, you also see a larger picture, the location on the map and the place you met them. You can also Tweet to the person from here.
+
+Implementation details:
+
+i. Note that I spent many hours trying to make Modal segues work for the Add contact screen but the Exit transition simply couldn't be wired. Then, I decided to use a push segue for that too.
+
+ii. Note that for now, I decided to store the images in Core Data itself, but such an app might have a server-side backend to save these images.
+
+iii. The MapView on the View Contact screen is an embed segue.
+
+iv. The text fields on the Add Contact page have all been linked so the Return button can take you to the next field and close the keyboard at the end of the form. The text fields contain an Animation to move the field up when the keyboard is displayed.
+
+v. The location is fetched in the background with the user's permission. If location is not available, the app automatically goes to Paris <3
+
+vi. Both the CDTVC classes are actually children of a common class and share code via inheritance.
